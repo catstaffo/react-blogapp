@@ -2,37 +2,29 @@ import { View, Card, Flex, Text, Heading } from "@aws-amplify/ui-react";
 import { Amplify, API, graphqlOperation } from "aws-amplify";
 import { listPosts } from "./graphql/queries";
 import Navbar from "./components/navbar";
+import Home from "./pages/home";
 import Feed from "./pages/feed";
 import MyPosts from "./pages/my-posts";
 import Profile from "./pages/profile";
 import awsExports from "./aws-exports";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 Amplify.configure(awsExports);
 
 function App() {
-  let Component;
-  switch (window.location.pathname) {
-    case "/":
-      Component = App;
-      break;
-    case "/my-posts":
-      Component = MyPosts;
-      break;
-    case "/profile":
-      Component = Profile;
-      break;
-    case "/feed":
-      Component = Feed;
-      break;
-  }
   return (
     <View>
-      <Navbar />
-      <div className="mt-4 mx-2">
-        <Component />
-      </div>
-      <p>I want this 2 work plz</p>
+      <Router>
+        <Navbar />
+        <div className="wrapper mt-4 mx-2">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/my-posts" element={<MyPosts />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
+      </Router>
     </View>
   );
 }
