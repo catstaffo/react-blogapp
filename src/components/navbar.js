@@ -8,12 +8,13 @@ Amplify.configure(awsExports);
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
+  const [signedUser, setSignedUser] = useState(false);
+  const [openModel, setOpenModal] = useState(false);
 
   return (
     <nav className="flex justify-between items-stretch gap-9 px-5 py-4 shadow-md">
       <Link to="/" className="site-title">
         <Heading level={2}>
-          {" "}
           <Link to="/">Site Name</Link>
         </Heading>
       </Link>

@@ -9,7 +9,7 @@ import Profile from "./pages/profile";
 import awsExports from "./aws-exports";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-Amplify.configure(awsExports);
+Amplify.configure({ ...awsExports, ssr: true });
 
 function App() {
   return (
@@ -22,6 +22,14 @@ function App() {
             <Route path="/feed" element={<Feed />} />
             <Route path="/my-posts" element={<MyPosts />} />
             <Route path="/profile" element={<Profile />} />
+            <Route
+              path="*"
+              element={
+                <div>
+                  <h2>404 Page not found etc</h2>
+                </div>
+              }
+            />
           </Routes>
         </div>
       </Router>
