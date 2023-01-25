@@ -13,7 +13,14 @@ export default function Profile() {
         alignItems="center"
         height="80vh"
       >
-        <AuthForm />
+        <AuthForm>
+          {({ signOut, user }) => (
+            <main>
+              <h1>Hello {user.username}</h1>
+              <button onClick={signOut}>Sign out</button>
+            </main>
+          )}
+        </AuthForm>
       </Flex>
       <View height="80vh">
         <Image

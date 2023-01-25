@@ -14,15 +14,10 @@ const components = {
   Footer,
 };
 
-export default function AuthForm() {
+export default function AuthForm({ children }) {
   return (
-    <Authenticator components={components}>
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </main>
-      )}
+    <Authenticator components={components} variation="modal">
+      {children}
     </Authenticator>
   );
 }
