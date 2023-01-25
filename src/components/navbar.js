@@ -1,23 +1,26 @@
 import { Heading } from "@aws-amplify/ui-react";
 import "../styles/navbar.css";
 import { Link } from "react-router-dom";
-import { Auth, Amplify } from "aws-amplify";
+import { Auth, Amplify, Hub } from "aws-amplify";
 import awsExports from "../aws-exports";
 import { useState, useEffect } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 Amplify.configure(awsExports);
 
 export default function Navbar() {
+  const navigate = useNavigate();
   //const [isOpen, setOpen] = useState(false);
-  const [signedInUser, setSignedInUser] = useState(false);
+  let [signedInUser, setSignedInUser] = useState(false);
   //const [openModal, setOpenModal] = useState(false);
 
   async function onSignOutClick() {
     await Auth.signOut();
     try {
       signedInUser = false;
-      redirect("/");
+      setSignedInUser(signedInUser);
+      navigate("/");
+      Hub.listen("auth", checkUser);
     } catch (err) {
       console.log(err);
     }
@@ -25,6 +28,7 @@ export default function Navbar() {
 
   useEffect(() => {
     checkUser();
+    // eslint-disable-next-line
   }, []);
 
   async function checkUser() {
