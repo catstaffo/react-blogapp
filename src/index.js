@@ -12,6 +12,7 @@ import User from "./pages/user";
 import Blog from "./pages/blog";
 import MyPosts from "./pages/my-posts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./pages/login";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/create-post",
         element: <CreatePost />,
+      },
+      {
+        path: "/welcome",
+        element: <Login />,
       },
       {
         path: "/post/:postid",
