@@ -4,9 +4,9 @@
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost(
     $filter: ModelSubscriptionPostFilterInput
-    $owner: String
+    $username: String
   ) {
-    onCreatePost(filter: $filter, owner: $owner) {
+    onCreatePost(filter: $filter, username: $username) {
       id
       title
       content
@@ -14,16 +14,15 @@ export const onCreatePost = /* GraphQL */ `
       coverImage
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdatePost = /* GraphQL */ `
   subscription OnUpdatePost(
     $filter: ModelSubscriptionPostFilterInput
-    $owner: String
+    $username: String
   ) {
-    onUpdatePost(filter: $filter, owner: $owner) {
+    onUpdatePost(filter: $filter, username: $username) {
       id
       title
       content
@@ -31,16 +30,15 @@ export const onUpdatePost = /* GraphQL */ `
       coverImage
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeletePost = /* GraphQL */ `
   subscription OnDeletePost(
     $filter: ModelSubscriptionPostFilterInput
-    $owner: String
+    $username: String
   ) {
-    onDeletePost(filter: $filter, owner: $owner) {
+    onDeletePost(filter: $filter, username: $username) {
       id
       title
       content
@@ -48,7 +46,6 @@ export const onDeletePost = /* GraphQL */ `
       coverImage
       createdAt
       updatedAt
-      owner
     }
   }
 `;

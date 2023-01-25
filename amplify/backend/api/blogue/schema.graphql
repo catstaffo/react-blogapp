@@ -9,7 +9,7 @@ type Post
     rules: [
       # allow all authenticated users ability to create posts
       # allow owners ability to update and delete their posts
-      { allow: owner }
+      { allow: owner, ownerField: "username" }
       # allow all authenticated users to read posts
       { allow: private, operations: [read] }
       # allow all guest users (not authenticated) to read posts
