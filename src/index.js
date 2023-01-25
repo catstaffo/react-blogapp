@@ -5,9 +5,12 @@ import App from "./App";
 import ErrorPage from "./pages/error";
 import Feed from "./pages/feed";
 import Home from "./pages/home";
-import Post, { loader as newPostLoader } from "./post/[id]";
+import Post from "./pages/post";
 import Profile from "./pages/profile";
 import CreatePost from "./pages/createpost";
+import User from "./pages/user";
+import Blog from "./pages/blog";
+import MyPosts from "./pages/my-posts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -33,8 +36,20 @@ const router = createBrowserRouter([
         element: <Post />,
       },
       {
+        path: "/user/:userid",
+        element: <User />,
+      },
+      {
+        path: "/blog/:blogid",
+        element: <Blog />,
+      },
+      {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/my-posts",
+        element: <MyPosts />,
       },
     ],
   },

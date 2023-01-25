@@ -1,11 +1,7 @@
 import { Flex, Grid, Image, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import { Amplify } from "aws-amplify";
 import AuthForm from "../components/auth/authform";
-import awsExports from "../aws-exports";
 import "../styles/index.css";
-
-Amplify.configure(awsExports);
 
 export default function Profile() {
   return (
