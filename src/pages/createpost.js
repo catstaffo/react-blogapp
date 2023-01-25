@@ -23,16 +23,15 @@ export function CreatePost() {
 
   async function createNewPost() {
     if (!title || !content) return;
-    const id = uuid();
-    post.id = id;
+    const postid = uuid();
+    post.id = postid;
 
     await API.graphql({
       query: createPost,
       variables: { input: post },
       authMode: "AMAZON_COGNITO_USER_POOLS",
     });
-
-    navigate(`/post/${id}`, { state: { post: post, id: id } });
+    navigate(`/post/${postid}`);
   }
   return (
     <div>

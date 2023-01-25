@@ -5,7 +5,7 @@ import App from "./App";
 import ErrorPage from "./pages/error";
 import Feed from "./pages/feed";
 import Home from "./pages/home";
-import Post from "./post/[id]";
+import Post, { loader as newPostLoader } from "./post/[id]";
 import Profile from "./pages/profile";
 import CreatePost from "./pages/createpost";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -29,9 +29,8 @@ const router = createBrowserRouter([
         element: <CreatePost />,
       },
       {
-        path: "/post/:id",
+        path: "/post/:postid",
         element: <Post />,
-        //loader: newPostLoader,
       },
       {
         path: "/profile",

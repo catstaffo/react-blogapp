@@ -3,7 +3,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { Amplify } from "aws-amplify";
 import AuthForm from "../components/auth/authform";
 import awsExports from "../aws-exports";
-import "../index.css";
+import "../styles/index.css";
 
 Amplify.configure(awsExports);
 
