@@ -1,5 +1,5 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import { useState, useRef, React } from "react";
+import { useState, React } from "react";
 import { API } from "aws-amplify";
 import { v4 as uuid } from "uuid";
 import { createPost } from "../graphql/mutations";
@@ -9,7 +9,7 @@ import "easymde/dist/easymde.min.css";
 
 const initialState = { title: "", content: "" };
 
-function CreatePost() {
+export function CreatePost() {
   const [post, setPost] = useState(initialState);
   const { title, content } = post;
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ function CreatePost() {
       variables: { input: post },
       authMode: "AMAZON_COGNITO_USER_POOLS",
     });
+
     navigate(`/post/${id}`, { state: { post: post, id: id } });
   }
   return (

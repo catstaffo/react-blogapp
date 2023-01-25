@@ -18,12 +18,12 @@ export default function Navbar() {
       </Link>
       <ul className="px-0 py-0 mx-0 my-0 list-none flex gap-9">
         <li>
-          <Link to="/createpost" className="text-lg">
+          <Link to="/create-post" className="text-lg">
             Create Post
           </Link>
         </li>
         <li>
-          <Link to="/feed" className="text-lg">
+          <Link to="/blogroll" className="text-lg">
             Blog Feed
           </Link>
         </li>
