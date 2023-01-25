@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./styles/index.css";
 import App from "./App";
 import ErrorPage from "./pages/error";
 import Feed from "./pages/feed";
@@ -8,7 +8,6 @@ import Home from "./pages/home";
 import Post from "./post/[id]";
 import Profile from "./pages/profile";
 import CreatePost from "./pages/createpost";
-import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -48,5 +47,3 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-reportWebVitals();

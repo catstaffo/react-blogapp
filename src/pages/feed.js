@@ -1,9 +1,9 @@
 import { View, Card, Flex, Text, Heading } from "@aws-amplify/ui-react";
 import { Amplify, API, graphqlOperation } from "aws-amplify";
 import { listPosts } from "../graphql/queries";
-
 import awsExports from "../aws-exports";
 import { useState, useEffect } from "react";
+
 Amplify.configure(awsExports);
 
 export default function Feed() {

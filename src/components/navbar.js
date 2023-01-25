@@ -1,15 +1,15 @@
 import { Heading } from "@aws-amplify/ui-react";
-import "./navbar.css";
+import "../styles/navbar.css";
 import { Link } from "react-router-dom";
 import { Amplify } from "aws-amplify";
 import awsExports from "../aws-exports";
-import { useState, useEffect } from "react";
+//import { useState } from "react";
 Amplify.configure(awsExports);
 
 export default function Navbar() {
-  const [isOpen, setOpen] = useState(false);
+  /*const [isOpen, setOpen] = useState(false);
   const [signedUser, setSignedUser] = useState(false);
-  const [openModel, setOpenModal] = useState(false);
+  const [openModel, setOpenModal] = useState(false);*/
 
   return (
     <nav className="flex justify-between items-stretch gap-9 px-5 py-4 shadow-md">
