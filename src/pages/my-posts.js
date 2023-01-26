@@ -16,13 +16,13 @@ export default function MyPosts() {
     );
     const posts = postData.data.listPosts.items;
     setPosts(posts);
-    console.log(posts);
+    console.log(username);
   }
   return (
     <View>
-      {posts.map((post, index) => (
-        <div className="max-w-[40vh]">
-          <Card variation="elevated" key={index}>
+      {posts.map((post) => (
+        <div className="max-w-[40vh]" key={post.id}>
+          <Card variation="elevated">
             <Flex direction="row" justifyContent="space-between">
               <Flex direction="column">
                 <Heading isTruncated={true} level={4}>
@@ -30,9 +30,11 @@ export default function MyPosts() {
                 </Heading>
                 <Text>User: {post.username}</Text>
                 <Text>Content: {post.content}</Text>
-                <Link to="/">View Post</Link>
-                <Link to="/">Edit Post</Link>
-                <Link to="/">Delete Post</Link>
+                <Text>
+                  View Post |
+                  <Link to={`/my-posts/edit/${post.id}`}>Edit Post</Link>|
+                  Delete Post
+                </Text>
               </Flex>
             </Flex>
           </Card>

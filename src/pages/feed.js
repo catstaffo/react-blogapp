@@ -28,10 +28,10 @@ export default function Feed() {
             <Flex direction="row" justifyContent="space-between">
               <Flex direction="column">
                 <Heading isTruncated={true} level={4}>
-                  {post.title}
+                  Title: {post.title}
                 </Heading>
-                <Text>{post.username}</Text>
-                <Text>{post.content}</Text>
+                <Text>User: {post.username}</Text>
+                <Text>Content: {post.content}</Text>
               </Flex>
             </Flex>
           </Card>

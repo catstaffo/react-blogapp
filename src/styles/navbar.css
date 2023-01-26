@@ -1,4 +1,5 @@
-a {
+a,
+button {
   color: inherit;
   height: 100%;
   display: flex;

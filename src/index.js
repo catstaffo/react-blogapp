@@ -13,6 +13,7 @@ import Blog from "./pages/blog";
 import MyPosts from "./pages/my-posts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/login";
+import EditPost from "./pages/postedit";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/my-posts",
         element: <MyPosts />,
+      },
+      {
+        path: "/my-posts/edit/:postid",
+        element: <EditPost />,
       },
     ],
   },

@@ -70,7 +70,7 @@ export default function Navbar() {
         </li>
         {signedInUser ? (
           <li>
-            <button type="button" onClick={onSignOutClick} className="text-lg">
+            <button onClick={onSignOutClick} className="text-lg">
               Log out
             </button>
           </li>

@@ -2,6 +2,7 @@ import { Flex, Grid, Image, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import AuthForm from "../components/auth/authform";
 import "../styles/index.css";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   return (
@@ -14,10 +15,9 @@ export default function Profile() {
         height="80vh"
       >
         <AuthForm>
-          {({ signOut, user }) => (
+          {({ user }) => (
             <main>
               <h1>Hello {user.username}</h1>
-              <button onClick={signOut}>Sign out</button>
             </main>
           )}
         </AuthForm>
