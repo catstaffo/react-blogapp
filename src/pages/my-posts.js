@@ -9,14 +9,21 @@ export default function MyPosts() {
   useEffect(() => {
     fetchPosts();
   }, []);
+
   async function fetchPosts() {
-    const username = await Auth.currentAuthenticatedUser();
-    const postData = await API.graphql(
-      graphqlOperation(listPosts, { username: username })
-    );
-    const posts = postData.data.listPosts.items;
-    setPosts(posts);
-    console.log(username);
+    try {
+      const usernameInfo = await Auth.currentAuthenticatedUser();
+      const username = usernameInfo.attributes.sub.toString()
+      /* contains is necessary in this query because dynamodb info
+      for username attached to posts is actually in form of
+      "usernameInfo.attributes.sub::usernameInfo.username" */
+      const postData = await API.graphql(graphqlOperation(listPosts, { filter: { username: {contains: username} }}))
+      const posts = postData.data.listPosts.items;
+      setPosts(posts);
+    }
+   catch (err) {
+      console.log(err);
+    }
   }
   return (
     <View>
