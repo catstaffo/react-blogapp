@@ -1,7 +1,8 @@
-import { View, Card, Flex, Text, Heading } from "@aws-amplify/ui-react";
+import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
 import { API, graphqlOperation } from "aws-amplify";
 import { listPosts } from "../graphql/queries";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -23,15 +24,16 @@ export default function Feed() {
   return (
     <View>
       {posts.map((post, index) => (
-        <div className="max-w-[40vh]">
+        <div className="max-w-[80vh] m-5">
           <Card variation="elevated" key={post.id ? post.id : index}>
             <Flex direction="row" justifyContent="space-between">
               <Flex direction="column">
                 <Heading isTruncated={true} level={4}>
                   Title: {post.title}
                 </Heading>
-                <Text>User: {post.username}</Text>
-                <Text>Content: {post.content}</Text>
+                <p className="break-words p-0 m-0">User: {post.username}</p>
+                <p className="break-words p-0 m-0">Content: {post.content}</p>
+                <p className="break-words p-0 m-0"><Link to= {`/post/${post.id}`} className="inline p-0 m-0">View More</Link></p>
               </Flex>
             </Flex>
           </Card>
