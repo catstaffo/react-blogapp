@@ -1,6 +1,5 @@
 import "@aws-amplify/ui-react/styles.css";
 import AuthForm from "../components/auth/authform";
-import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import { useState, useEffect } from "react";
 import "../styles/index.css";

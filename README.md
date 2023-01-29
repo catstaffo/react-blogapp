@@ -1,10 +1,8 @@
-1. authform should be modular and take children rather than have contents hard coded: check! :)
-   => make a log in/sign up page
+1. => log in **module** with background from history
 2. make bloglist component, card component for posts
-3. edit and delete functionality on your own posts
-4. upload images
-5. user commenting
-6. wildlife database
+3. upload images
+4. user commenting
+5. wildlife database
 
 https://www.youtube.com/watch?v=PHaECbrKgs0&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=11
 

@@ -11,7 +11,7 @@ import CreatePost from "./pages/createpost";
 import User from "./pages/user";
 import Blog from "./pages/blog";
 import MyPosts from "./pages/my-posts";
-import Login from "./pages/login";
+import Login from "./components/auth/authform"
 import EditPost from "./pages/postedit";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthContext from "./context";
@@ -35,12 +35,12 @@ const router = createBrowserRouter([
         element: <CreatePost />,
       },
       {
-        path: "/welcome",
-        element: <Login />,
-      },
-      {
         path: "/post/:postid",
         element: <Post />,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
       },
       {
         path: "/user/:userid",

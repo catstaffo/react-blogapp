@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API, Auth, graphqlOperation } from "aws-amplify";
 import { listPosts } from "../graphql/queries";
+import { deletePost } from "../graphql/mutations";
 
 export default function MyPosts() {
   const [posts, setPosts] = useState([]);
@@ -25,6 +26,20 @@ export default function MyPosts() {
       console.log(err);
     }
   }
+
+  async function deleteIt(id) {
+    try {
+      await API.graphql({
+      query: deletePost,
+      variables: { input: { id } },
+      authMode: "AMAZON_COGNITO_USER_POOLS"
+    })
+      fetchPosts()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <View>
       {posts.map((post) => (
@@ -39,8 +54,8 @@ export default function MyPosts() {
                 <p className="break-words">Content: {post.content}</p>
                 <p className="break-words">
                   <Link to= {`/post/${post.id}`} className="inline p-0 m-0">View More</Link> |
-                  <Link to={`/posts/edit/${post.id}`} className="inline p-0 m-0">{" "}Edit Post{" "}</Link>|
-                  Delete Post
+                  <Link to={`/posts/edit/${post.id}`} className="inline p-0 m-0">{" "}Edit Post{" "}</Link>|{" "}
+                  <button onClick={() => deleteIt(post.id )} className="inline p-0 m-0">Delete Post</button>
                 </p>
               </Flex>
             </Flex>
