@@ -3,42 +3,24 @@ import "../styles/navbar.css";
 import { Link } from "react-router-dom";
 import { Auth, Amplify, Hub } from "aws-amplify";
 import awsExports from "../aws-exports";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {useUser} from "../context"
 
 Amplify.configure(awsExports);
 
 export default function Navbar() {
   const navigate = useNavigate();
   //const [isOpen, setOpen] = useState(false);
-  let [signedInUser, setSignedInUser] = useState(false);
+  const { user } = useUser();
+  
   //const [openModal, setOpenModal] = useState(false);
 
   async function onSignOutClick() {
     await Auth.signOut();
     try {
-      signedInUser = false;
-      setSignedInUser(signedInUser);
       navigate("/");
-      Hub.listen("auth", checkUser);
     } catch (err) {
       console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    checkUser();
-    // eslint-disable-next-line
-  }, []);
-
-  async function checkUser() {
-    const user = await Auth.currentAuthenticatedUser();
-    if (!user) {
-      signedInUser = false;
-      setSignedInUser(signedInUser);
-    } else {
-      signedInUser = true;
-      setSignedInUser(signedInUser);
     }
   }
 
@@ -68,7 +50,7 @@ export default function Navbar() {
             Profile
           </Link>
         </li>
-        {signedInUser ? (
+        {user ? (
           <li>
             <button onClick={onSignOutClick} className="text-lg">
               Log out

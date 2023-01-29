@@ -38,8 +38,8 @@ export default function MyPosts() {
                 <p className="break-words">User: {post.username}</p>
                 <p className="break-words">Content: {post.content}</p>
                 <p className="break-words">
-                  View Post |
-                  <Link to={`/posts/edit/${post.id}`} className="inline p-0 m-0">Edit Post</Link>|
+                  <Link to= {`/post/${post.id}`} className="inline p-0 m-0">View More</Link> |
+                  <Link to={`/posts/edit/${post.id}`} className="inline p-0 m-0">{" "}Edit Post{" "}</Link>|
                   Delete Post
                 </p>
               </Flex>

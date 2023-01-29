@@ -11,9 +11,10 @@ import CreatePost from "./pages/createpost";
 import User from "./pages/user";
 import Blog from "./pages/blog";
 import MyPosts from "./pages/my-posts";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/login";
 import EditPost from "./pages/postedit";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AuthContext from "./context";
 
 const router = createBrowserRouter([
   {
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <AuthContext>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </AuthContext>
 );
