@@ -1,10 +1,10 @@
 import { Heading } from "@aws-amplify/ui-react";
 import "../styles/navbar.css";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Auth, Amplify } from "aws-amplify";
 import awsExports from "../aws-exports";
 import { useNavigate, useLocation } from "react-router-dom";
-import {useUser} from "../context"
+import { useUser } from "../context";
 
 Amplify.configure(awsExports);
 
@@ -12,10 +12,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const history = location.pathname;
-  //const [isOpen, setOpen] = useState(false);
   const { user } = useUser();
-  
-  //const [openModal, setOpenModal] = useState(false);
 
   async function onLogOutClick() {
     await Auth.signOut();
@@ -25,7 +22,6 @@ export default function Navbar() {
       console.log(err);
     }
   }
-
 
   return (
     <nav className="flex justify-between items-stretch gap-9 px-5 py-4 shadow-md">
@@ -61,7 +57,7 @@ export default function Navbar() {
           </li>
         ) : (
           <li>
-            <Link to="/login" state={{history}} className="text-lg">
+            <Link to="/login" state={{ history }} className="text-lg">
               Log In
             </Link>
           </li>
