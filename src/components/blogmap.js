@@ -15,7 +15,10 @@ export default function GenericFeed({ posts }) {
                 <p className="break-words">User: {post.username}</p>
                 <p className="break-words">Content: {post.content}</p>
                 <p className="break-words">
-                  <Link to={`/post/${post.id}`} className="inline p-0 m-0">
+                  <Link
+                    to={`/post/${post.id}`}
+                    className="inline pb-1 pt-0 m-0 text-blue-900 border-b-2"
+                  >
                     View More
                   </Link>
                 </p>

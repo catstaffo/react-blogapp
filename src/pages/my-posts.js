@@ -13,6 +13,7 @@ export default function MyPosts() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetchPosts();
+    // eslint-disable-next-line
   }, []);
 
   async function fetchPosts() {
@@ -59,13 +60,16 @@ export default function MyPosts() {
                 <p className="break-words">User: {post.username}</p>
                 <p className="break-words">Content: {post.content}</p>
                 <p className="break-words">
-                  <Link to={`/post/${post.id}`} className="inline p-0 m-0">
+                  <Link
+                    to={`/post/${post.id}`}
+                    className="inline pb-1 pt-0 m-0 text-blue-900 border-b-2"
+                  >
                     View More
                   </Link>{" "}
                   |
                   <Link
-                    to={`/posts/edit/${post.id}`}
-                    className="inline p-0 m-0"
+                    to={`/my-posts/edit/${post.id}`}
+                    className="inline pb-1 pt-0 m-0 text-blue-900 border-b-2"
                   >
                     {" "}
                     Edit Post{" "}
@@ -73,7 +77,7 @@ export default function MyPosts() {
                   |{" "}
                   <button
                     onClick={() => deleteIt(post.id)}
-                    className="inline p-0 m-0"
+                    className="inline pb-1 pt-0 m-0 text-blue-900 border-b-2"
                   >
                     Delete Post
                   </button>

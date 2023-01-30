@@ -34,19 +34,25 @@ export function CreatePost() {
     navigate(`/post/${postid}`);
   }
   return (
-    <div>
-      <p>Create new post</p>
+    <div className="ml-[20vw]">
+      <h2 className="text-lg font-semibold">Create new post</h2>
       <input
         onChange={onChange}
         name="title"
         placeholder="Title"
         value={post.title}
+        className="border-b border-blue-900 pb-2 text-lg my-4 focus:outline-none min-w-[40vw] text-gray-900 font-semibold placeholder-gray-700 y-2"
       />
       <SimpleMDE
         value={post.content}
         onChange={(value) => setPost({ ...post, content: value })}
+        className="max-w-[70vw] max-h-[60vh] mb-3"
       />
-      <button type="button" onClick={createNewPost}>
+      <button
+        type="button"
+        onClick={createNewPost}
+        className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900"
+      >
         Create Post
       </button>
     </div>

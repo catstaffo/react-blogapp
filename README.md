@@ -1,5 +1,3 @@
-1. => log in **module** with background from history
-2. make bloglist component, card component for posts
 3. upload images
 4. user commenting
 5. wildlife database

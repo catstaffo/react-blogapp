@@ -48,8 +48,8 @@ function EditPost() {
     navigate("/my-posts");
   }
   return (
-    <div>
-      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2">
+    <div className="ml-[10vw]">
+      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 ">
         Edit post
       </h1>
       <input
@@ -57,14 +57,15 @@ function EditPost() {
         name="title"
         placeholder="Title"
         value={myPost.title}
-        className="border-b pb-2 text-lg my-4 focus:outline-none w-full font-light text-gray-500 placeholder-gray-500 y-2"
+        className="border-b border-blue-900 pb-2 text-lg my-4 focus:outline-none min-w-[40vw] text-gray-900 font-semibold placeholder-gray-700 y-2"
       />
       <SimpleMDE
         value={myPost.content}
         onChange={(value) => setMyPost({ ...myPost, content: value })}
+        className="max-w-[70vw] max-h-[60vh] mb-3"
       />
       <button
-        className="mb-4 bg-blue-600 text-white font-semibold px-8 py-2 rounded-lg"
+        className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900"
         onClick={updateCurrentPost}
       >
         Update Post
