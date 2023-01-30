@@ -1,20 +1,20 @@
 import "@aws-amplify/ui-react/styles.css";
 import AuthForm from "../components/auth/authform";
-import { Auth } from "aws-amplify";
-import { useState, useEffect } from "react";
+import { useUser } from "../context"
 import "../styles/index.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 
 export default function Login() {
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    checkUser();
-  }, []);
-  async function checkUser() {
-    const user = await Auth.currentAuthenticatedUser();
-    setUser(user);
-  }
-  if (!user) return <AuthForm></AuthForm>;
-  else return navigate("/");
+  const { user } = useUser();
+
+  return (
+  <div>
+      {user ? (
+        <Navigate to= "/" replace={true} />
+      ): (
+        <AuthForm/>
+      )}
+  </div>
+  )
 }

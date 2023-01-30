@@ -1,16 +1,14 @@
 import { Heading } from "@aws-amplify/ui-react";
 import "../styles/navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Auth, Amplify } from "aws-amplify";
 import awsExports from "../aws-exports";
 import { useNavigate } from "react-router-dom";
 import {useUser} from "../context"
-import AuthForm from "./auth/authform";
 
 Amplify.configure(awsExports);
 
 export default function Navbar() {
-  const location = useLocation();
   const navigate = useNavigate();
   //const [isOpen, setOpen] = useState(false);
   const { user } = useUser();
@@ -24,10 +22,6 @@ export default function Navbar() {
     } catch (err) {
       console.log(err);
     }
-  }
-
-  async function onLogInClick() {
-    
   }
 
 
@@ -66,7 +60,7 @@ export default function Navbar() {
         ) : (
           <li>
             <Link to="/login" className="text-lg">
-              Log in
+              Log In
             </Link>
           </li>
         )}

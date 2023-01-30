@@ -19,4 +19,19 @@ type Post
   content: String!
   username: String!
   coverImage: String
+  comments: [Comment] @hasmany(indexName: "byPost", fields: [ "id"])
+}
+
+type Comment
+@model
+@auth(
+  rules: [
+    {allow: owner, ownerField: "createdBy"}
+    {allow: public, operations: [read]}
+  ]
+) {
+  id: ID!
+  message: String!
+  post: Post @belongsTo(fields: [ "postId"])
+  postId: ID @index(name: "byPost")
 }
