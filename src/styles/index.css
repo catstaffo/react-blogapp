@@ -10,6 +10,18 @@
   max-height: 70vh;
 }
 
+.containerBig {
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+
+.awesome {
+  background-image: url( "../images/loginbg.jpg");
+  
+
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

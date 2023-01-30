@@ -1,30 +1,33 @@
 import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { API, Auth, graphqlOperation } from "aws-amplify";
 import { listPosts } from "../graphql/queries";
 import { deletePost } from "../graphql/mutations";
+import {useUser} from "../context"
+
 
 export default function MyPosts() {
+  const navigate= useNavigate()
+  const { user } = useUser();
+
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetchPosts();
   }, []);
 
   async function fetchPosts() {
-    try {
-      const usernameInfo = await Auth.currentAuthenticatedUser();
-      const username = usernameInfo.attributes.sub.toString()
-      /* contains is necessary in this query because dynamodb info
-      for username attached to posts is actually in form of
-      "usernameInfo.attributes.sub::usernameInfo.username" */
-      const postData = await API.graphql(graphqlOperation(listPosts, { filter: { username: {contains: username} }}))
-      const posts = postData.data.listPosts.items;
-      setPosts(posts);
-    }
-   catch (err) {
-      console.log(err);
-    }
+      if (user == null) {
+        navigate("/login");
+      } else {
+        const username = user.attributes.sub.toString()
+        /* contains is necessary in this query because dynamodb info
+        for username attached to posts is actually in form of
+        "usernameInfo.attributes.sub::usernameInfo.username" */
+        const postData = await API.graphql(graphqlOperation(listPosts, { filter: { username: { contains: username } } }))
+        const posts = postData.data.listPosts.items;
+        setPosts(posts);
+      }
   }
 
   async function deleteIt(id) {

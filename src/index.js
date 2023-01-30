@@ -39,10 +39,6 @@ const router = createBrowserRouter([
         element: <Post />,
       },
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
         path: "/user/:userid",
         element: <User />,
       },
@@ -63,6 +59,10 @@ const router = createBrowserRouter([
         element: <EditPost />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
