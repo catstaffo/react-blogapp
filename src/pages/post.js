@@ -12,6 +12,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useUser } from "../context";
 import { v4 as uuid } from "uuid";
+import Comments from "../components/comments";
 
 const initialState = { message: "" };
 
@@ -22,13 +23,12 @@ export default function Post() {
   */
   let { postid } = useParams();
   const [myPost, setMyPost] = useState([]);
-  const [comment, setComment] = useState(initialState);
+  const [postComment, setPostComment] = useState(initialState);
   const [showCommentCreate, setShowCommentCreate] = useState(false);
-  const { message } = comment;
+  const { message } = postComment;
   const { user } = useUser();
   const navigate = useNavigate();
 
-  console.log(user);
   useEffect(() => {
     fetchPost();
     // eslint-disable-next-line
@@ -46,14 +46,14 @@ export default function Post() {
     }
   }
 
-  async function postComment() {
+  async function postCommentCreate() {
     if (!message) return;
     const id = uuid();
-    comment.id = id;
+    postComment.id = id;
     try {
       await API.graphql({
         query: createComment,
-        variables: { input: comment },
+        variables: { input: postComment },
         authMode: "AMAZON_COGNITO_USER_POOLS",
       });
     } catch (error) {
@@ -94,17 +94,18 @@ export default function Post() {
           {
             <div style={{ display: showCommentCreate ? "block" : "none" }}>
               <SimpleMDE
-                value={comment.message}
+                value={postComment.message}
                 onChange={(value) =>
-                  setComment({
-                    ...comment,
+                  setPostComment({
+                    ...postComment,
                     message: value,
+                    username: user.username,
                     postId: `${postid}`,
                   })
                 }
               />
               <button
-                onClick={postComment}
+                onClick={postCommentCreate}
                 type="button"
                 className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900"
               >
@@ -112,6 +113,9 @@ export default function Post() {
               </button>
             </div>
           }
+          <div>
+            <Comments />
+          </div>
         </div>
       </div>
     </View>

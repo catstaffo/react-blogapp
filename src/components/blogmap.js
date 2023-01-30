@@ -22,6 +22,7 @@ export default function GenericFeed({ posts }) {
                 </Heading>
                 <p className="break-words">User: {post.username}</p>
                 <p className="break-words">Content: {post.content}</p>
+
                 <p className="break-words">
                   <Link
                     to={`/post/${post.id}`}

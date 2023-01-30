@@ -52,6 +52,7 @@ function EditPost() {
       content,
       title,
     };
+    
     await API.graphql({
       query: updatePost,
       variables: { input: postUpdated },

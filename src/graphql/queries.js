@@ -8,11 +8,11 @@ export const getPost = /* GraphQL */ `
       title
       content
       username
-      coverImage
       comments {
         items {
           id
           message
+          username
           postId
           createdAt
           updatedAt
@@ -36,38 +36,6 @@ export const listPosts = /* GraphQL */ `
         title
         content
         username
-        coverImage
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const postsByUsername = /* GraphQL */ `
-  query PostsByUsername(
-    $username: String!
-    $sortDirection: ModelSortDirection
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    postsByUsername(
-      username: $username
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        title
-        content
-        username
-        coverImage
         comments {
           nextToken
         }
@@ -83,12 +51,12 @@ export const getComment = /* GraphQL */ `
     getComment(id: $id) {
       id
       message
+      username
       post {
         id
         title
         content
         username
-        coverImage
         comments {
           nextToken
         }
@@ -111,12 +79,12 @@ export const listComments = /* GraphQL */ `
       items {
         id
         message
+        username
         post {
           id
           title
           content
           username
-          coverImage
           createdAt
           updatedAt
         }
@@ -146,12 +114,12 @@ export const commentsByPostId = /* GraphQL */ `
       items {
         id
         message
+        username
         post {
           id
           title
           content
           username
-          coverImage
           createdAt
           updatedAt
         }

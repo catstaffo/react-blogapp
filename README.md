@@ -1,9 +1,9 @@
-3. upload images
-4. user commenting
-5. wildlife database
 
-https://www.youtube.com/watch?v=PHaECbrKgs0&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=11
-
-https://reactrouter.com/en/main/start/tutorial
-https://github.com/react-static/react-static/blob/master/docs/guides/dynamic-routes-react-router.md
-https://www.youtube.com/watch?v=LelifxOrzvw&t=0s
+2. upload images to posts
+3. begin wildlife database
+4. pages for wildlife in database
+5. tag posts with wildlife
+6. search posts
+7. user profile picture
+8. update auth to rely on httpheader/sig4/cookies
+9. websocket messaging w/ lambda events

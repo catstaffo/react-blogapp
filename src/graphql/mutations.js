@@ -11,11 +11,11 @@ export const createPost = /* GraphQL */ `
       title
       content
       username
-      coverImage
       comments {
         items {
           id
           message
+          username
           postId
           createdAt
           updatedAt
@@ -37,11 +37,11 @@ export const updatePost = /* GraphQL */ `
       title
       content
       username
-      coverImage
       comments {
         items {
           id
           message
+          username
           postId
           createdAt
           updatedAt
@@ -63,11 +63,11 @@ export const deletePost = /* GraphQL */ `
       title
       content
       username
-      coverImage
       comments {
         items {
           id
           message
+          username
           postId
           createdAt
           updatedAt
@@ -87,12 +87,12 @@ export const createComment = /* GraphQL */ `
     createComment(input: $input, condition: $condition) {
       id
       message
+      username
       post {
         id
         title
         content
         username
-        coverImage
         comments {
           nextToken
         }
@@ -113,12 +113,12 @@ export const updateComment = /* GraphQL */ `
     updateComment(input: $input, condition: $condition) {
       id
       message
+      username
       post {
         id
         title
         content
         username
-        coverImage
         comments {
           nextToken
         }
@@ -139,12 +139,12 @@ export const deleteComment = /* GraphQL */ `
     deleteComment(input: $input, condition: $condition) {
       id
       message
+      username
       post {
         id
         title
         content
         username
-        coverImage
         comments {
           nextToken
         }
