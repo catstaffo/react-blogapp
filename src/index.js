@@ -1,3 +1,6 @@
+/*
+  This is where my routing is defined
+*/
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
@@ -11,7 +14,7 @@ import CreatePost from "./pages/createpost";
 import User from "./pages/user";
 import Blog from "./pages/blog";
 import MyPosts from "./pages/my-posts";
-import Login from "./pages/login"
+import Login from "./pages/login";
 import EditPost from "./pages/postedit";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthContext from "./context";
@@ -66,6 +69,14 @@ const router = createBrowserRouter([
   },
 ]);
 
+/*
+  AuthContext wraps my whole reactapp
+  so that I do not have to prop drill
+  user auth info into every single component:
+  this way all components can receive this
+  information and update themselves upon changes
+  in the information
+*/
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContext>

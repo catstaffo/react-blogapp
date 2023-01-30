@@ -1,3 +1,11 @@
+/*
+  This component displays blog posts
+  as cards, for whatever posts are passed
+  into the component: notable: React does
+  not have inheritence. This component is
+  largely immutable in terms of function
+*/
+
 import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
 import { Link } from "react-router-dom";
 

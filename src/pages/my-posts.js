@@ -1,3 +1,9 @@
+/*
+  This is a page that displays owner posts
+  only and serves as an administrative panel
+  for management of user's own posts
+*/
+
 import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";

@@ -1,3 +1,7 @@
+/*
+  This page is where users are sent when
+  they are going to create a post
+*/
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { useState, React } from "react";
 import { API } from "aws-amplify";

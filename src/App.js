@@ -1,3 +1,8 @@
+/*
+  This is the main app container,
+  most components and pages render
+  within App as children
+*/
 import { View } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import Navbar from "./components/navbar";
@@ -11,6 +16,9 @@ export default function App() {
     <View>
       <Navbar />
       <div className="wrapper mt-4 mx-2">
+        {/*
+          Where child pages are rendered
+        */}
         <Outlet />
       </div>
     </View>

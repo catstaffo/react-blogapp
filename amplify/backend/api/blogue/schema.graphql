@@ -2,7 +2,6 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 type Post
   @model
-  @key(name: "postsByUsername", fields: [ "username"], queryfield: " postsByUsername")
   @auth(
     rules: [
       # allow all authenticated users ability to create posts
@@ -17,21 +16,21 @@ type Post
   id: ID!
   title: String!
   content: String!
-  username: String!
+  username: String! @index(name: "postsByUsername")
   coverImage: String
-  comments: [Comment] @hasmany(indexName: "byPost", fields: [ "id"])
+  comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
 }
 
 type Comment
-@model
-@auth(
-  rules: [
-    {allow: owner, ownerField: "createdBy"}
-    {allow: public, operations: [read]}
-  ]
-) {
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "createdBy" }
+      { allow: public, operations: [read] }
+    ]
+  ) {
   id: ID!
   message: String!
-  post: Post @belongsTo(fields: [ "postId"])
+  post: Post @belongsTo(fields: ["postId"])
   postId: ID @index(name: "byPost")
 }

@@ -1,3 +1,7 @@
+/* 
+  This page gets and displays
+  an individual post in its entirety
+*/
 import { API, graphqlOperation } from "aws-amplify";
 import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
 import { useParams } from "react-router-dom";
@@ -5,12 +9,16 @@ import { getPost } from "../graphql/queries";
 import { useState, useEffect } from "react";
 
 export default function Post() {
+  /*
+    retrieve the postid from the referring
+    url, which has the id encoded in it
+  */
   let { postid } = useParams();
   const [myPost, setMyPost] = useState([]);
 
   useEffect(() => {
     fetchPost();
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   async function fetchPost() {
@@ -19,7 +27,6 @@ export default function Post() {
         graphqlOperation(getPost, { id: `${postid}` })
       );
       const myPost = myPostData.data.getPost;
-      console.log(myPost);
       setMyPost(myPost);
     } catch (err) {
       console.log(err);

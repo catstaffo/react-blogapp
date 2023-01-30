@@ -1,3 +1,7 @@
+/*
+  NavBar component
+*/
+
 import { Heading } from "@aws-amplify/ui-react";
 import "../styles/navbar.css";
 import { Link } from "react-router-dom";
@@ -9,10 +13,16 @@ import { useUser } from "../context";
 Amplify.configure(awsExports);
 
 export default function Navbar() {
+  const { user } = useUser();
   const navigate = useNavigate();
+  /*
+    below 2 lines allow me to pass the path
+    that a user is on upon clicking a Link,
+    into the state of the next page:
+    this is used in the Link for log in
+  */
   const location = useLocation();
   const history = location.pathname;
-  const { user } = useUser();
 
   async function onLogOutClick() {
     await Auth.signOut();
@@ -24,7 +34,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="flex justify-between items-stretch gap-9 px-5 py-4 shadow-md">
+    <nav className="flex justify-between items-stretch gap-9 px-5 py-4 shadow-md ">
       <Link to="/" className="site-title">
         <Heading level={2}>Site Name</Heading>
       </Link>

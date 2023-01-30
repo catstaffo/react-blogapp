@@ -1,3 +1,8 @@
+/*
+  Error page that displays when users attempt
+  to navigate to undefined routes
+*/
+
 import { useRouteError } from "react-router-dom";
 import Navbar from "../components/navbar";
 

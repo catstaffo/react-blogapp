@@ -1,3 +1,9 @@
+/*
+  This page is where authenticated
+  users are sent, to edit a single post
+  of their own
+*/
+
 import { useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import SimpleMDE from "react-simplemde-editor";
@@ -8,6 +14,10 @@ import { getPost } from "../graphql/queries";
 
 function EditPost() {
   const navigate = useNavigate();
+  /*
+    retrieve the postid from the referring
+    url, which has the id encoded in it
+  */
   let { postid } = useParams();
   const id = postid;
   const [myPost, setMyPost] = useState([]);
@@ -16,6 +26,7 @@ function EditPost() {
     fetchPost();
   }, []);
 
+  // Load the selected post into the editor
   async function fetchPost() {
     try {
       const myPostData = await API.graphql(
@@ -32,6 +43,8 @@ function EditPost() {
     setMyPost(() => ({ ...myPost, [e.target.name]: e.target.value }));
   }
   const { title, content } = myPost;
+
+  // Submit the edited post into DynamoDB
   async function updateCurrentPost() {
     if (!title || !content) return;
     const postUpdated = {

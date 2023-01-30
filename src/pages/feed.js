@@ -1,3 +1,7 @@
+/*
+  This is a page that displays *all user posts*
+*/
+
 import { API, graphqlOperation } from "aws-amplify";
 import { listPosts } from "../graphql/queries";
 import { useState, useEffect } from "react";
