@@ -4,7 +4,7 @@
   within App as children
 */
 import { View } from "@aws-amplify/ui-react";
-import { Amplify } from "aws-amplify";
+import { Amplify, Storage } from "aws-amplify";
 import Navbar from "./components/navbar";
 import awsExports from "./aws-exports";
 import { Outlet } from "react-router-dom";
@@ -12,6 +12,7 @@ import { Outlet } from "react-router-dom";
 Amplify.configure({ ...awsExports, ssr: true });
 
 export default function App() {
+  
   return (
     <View>
       <Navbar />

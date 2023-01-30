@@ -17,6 +17,9 @@
       },
       "auth": {
         "blogue1cdc6f03": {}
+      },
+      "storage": {
+        "postimage": {}
       }
     }
   }

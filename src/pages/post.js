@@ -2,7 +2,7 @@
   This page gets and displays
   an individual post in its entirety
 */
-import { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation, Storage } from "aws-amplify";
 import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPost } from "../graphql/queries";
@@ -12,7 +12,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useUser } from "../context";
 import { v4 as uuid } from "uuid";
-import Comments from "../components/comments";
+import Comments from "../components/commentlist";
 
 const initialState = { message: "" };
 
@@ -41,6 +41,9 @@ export default function Post() {
       );
       const myPost = myPostData.data.getPost;
       setMyPost(myPost);
+      Storage.list('photos/') // for listing ALL files without prefix, pass '' instead
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
     } catch (err) {
       console.log(err);
     }

@@ -5,7 +5,7 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { listPosts } from "../graphql/queries";
 import { useState, useEffect } from "react";
-import GenericFeed from "../components/blogmap";
+import GenericFeed from "../components/bloglist";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);

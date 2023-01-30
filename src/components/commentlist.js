@@ -1,6 +1,9 @@
+/*
+  Component that displays comments for a post
+*/
 import { listComments } from "../graphql/queries";
 import { useState, useEffect } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import { API } from "aws-amplify";
 import { Card } from "@aws-amplify/ui-react";
 import { useParams } from "react-router-dom";
 

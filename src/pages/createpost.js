@@ -4,7 +4,7 @@
 */
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { useState, React } from "react";
-import { API } from "aws-amplify";
+import { API, Storage } from "aws-amplify";
 import { v4 as uuid } from "uuid";
 import { createPost } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
@@ -22,10 +22,23 @@ export function CreatePost() {
     setPost(() => ({
       ...post,
       [e.target.name]: e.target.value,
+      
     }));
   }
 
-  async function createNewPost() {
+  async function storagePush(e) {
+    try {
+      const file = e.target.files[0];
+      await Storage.put(file.name, file, {
+        contentType: "image/png", // contentType is optional
+      });
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+    }
+  }
+
+
+  async function createNewPost() {{
     if (!title || !content) return;
     const postid = uuid();
     post.id = postid;
@@ -35,7 +48,8 @@ export function CreatePost() {
       variables: { input: post },
       authMode: "AMAZON_COGNITO_USER_POOLS",
     });
-    navigate(`/post/${postid}`);
+  }
+    navigate(`/post/${post.id}`);
   }
   return (
     <div className="ml-[20vw]">
@@ -52,6 +66,7 @@ export function CreatePost() {
         onChange={(value) => setPost({ ...post, content: value })}
         className="max-w-[70vw] max-h-[60vh] mb-3"
       />
+      <input type="file" onChange={onChange} />;
       <button
         type="button"
         onClick={createNewPost}
