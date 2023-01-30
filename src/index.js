@@ -24,6 +24,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    /*
+      The below pages render within the
+      Outlet of App.js
+    */
     children: [
       {
         path: "/",
@@ -63,6 +67,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  /*
+    The below page renders outside the
+    Outlet of App.js
+  */
   {
     path: "/login",
     element: <Login />,

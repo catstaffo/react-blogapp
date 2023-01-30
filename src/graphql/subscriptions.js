@@ -19,7 +19,6 @@ export const onCreatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -46,7 +45,6 @@ export const onUpdatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -73,7 +71,6 @@ export const onDeletePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -83,11 +80,8 @@ export const onDeletePost = /* GraphQL */ `
   }
 `;
 export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment(
-    $filter: ModelSubscriptionCommentFilterInput
-    $createdBy: String
-  ) {
-    onCreateComment(filter: $filter, createdBy: $createdBy) {
+  subscription OnCreateComment($filter: ModelSubscriptionCommentFilterInput) {
+    onCreateComment(filter: $filter) {
       id
       message
       post {
@@ -105,16 +99,12 @@ export const onCreateComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;
 export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment(
-    $filter: ModelSubscriptionCommentFilterInput
-    $createdBy: String
-  ) {
-    onUpdateComment(filter: $filter, createdBy: $createdBy) {
+  subscription OnUpdateComment($filter: ModelSubscriptionCommentFilterInput) {
+    onUpdateComment(filter: $filter) {
       id
       message
       post {
@@ -132,16 +122,12 @@ export const onUpdateComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;
 export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment(
-    $filter: ModelSubscriptionCommentFilterInput
-    $createdBy: String
-  ) {
-    onDeleteComment(filter: $filter, createdBy: $createdBy) {
+  subscription OnDeleteComment($filter: ModelSubscriptionCommentFilterInput) {
+    onDeleteComment(filter: $filter) {
       id
       message
       post {
@@ -159,7 +145,6 @@ export const onDeleteComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;

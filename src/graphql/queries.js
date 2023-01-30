@@ -16,7 +16,6 @@ export const getPost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -99,7 +98,6 @@ export const getComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;
@@ -125,7 +123,6 @@ export const listComments = /* GraphQL */ `
         postId
         createdAt
         updatedAt
-        createdBy
       }
       nextToken
     }
@@ -161,7 +158,6 @@ export const commentsByPostId = /* GraphQL */ `
         postId
         createdAt
         updatedAt
-        createdBy
       }
       nextToken
     }

@@ -4,9 +4,16 @@
 */
 import { API, graphqlOperation } from "aws-amplify";
 import { View, Card, Flex, Heading } from "@aws-amplify/ui-react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getPost } from "../graphql/queries";
 import { useState, useEffect } from "react";
+import { createComment } from "../../src/graphql/mutations";
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
+import { useUser } from "../context";
+import { v4 as uuid } from "uuid";
+
+const initialState = { message: "" };
 
 export default function Post() {
   /*
@@ -15,7 +22,13 @@ export default function Post() {
   */
   let { postid } = useParams();
   const [myPost, setMyPost] = useState([]);
+  const [comment, setComment] = useState(initialState);
+  const [showCommentCreate, setShowCommentCreate] = useState(false);
+  const { message } = comment;
+  const { user } = useUser();
+  const navigate = useNavigate();
 
+  console.log(user);
   useEffect(() => {
     fetchPost();
     // eslint-disable-next-line
@@ -33,6 +46,26 @@ export default function Post() {
     }
   }
 
+  async function postComment() {
+    if (!message) return;
+    const id = uuid();
+    comment.id = id;
+    try {
+      await API.graphql({
+        query: createComment,
+        variables: { input: comment },
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    navigate(`/post/${myPost.id}`);
+  }
+
+  function toggle() {
+    setShowCommentCreate(!showCommentCreate);
+  }
+
   return (
     <View>
       <div className="max-w-[80vh] m-5">
@@ -47,6 +80,39 @@ export default function Post() {
             </Flex>
           </Flex>
         </Card>
+        <div>
+          {user && (
+            <button
+              type="button"
+              className="shadow border mt-2 mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900"
+              onClick={toggle}
+            >
+              Reply
+            </button>
+          )}
+
+          {
+            <div style={{ display: showCommentCreate ? "block" : "none" }}>
+              <SimpleMDE
+                value={comment.message}
+                onChange={(value) =>
+                  setComment({
+                    ...comment,
+                    message: value,
+                    postId: `${postid}`,
+                  })
+                }
+              />
+              <button
+                onClick={postComment}
+                type="button"
+                className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900"
+              >
+                Post
+              </button>
+            </div>
+          }
+        </div>
       </div>
     </View>
   );

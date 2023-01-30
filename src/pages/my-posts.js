@@ -16,6 +16,8 @@ export default function MyPosts() {
   const navigate = useNavigate();
   const { user } = useUser();
 
+  console.log(user);
+
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetchPosts();

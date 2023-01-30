@@ -25,7 +25,7 @@ type Comment
   @model
   @auth(
     rules: [
-      { allow: owner, ownerField: "createdBy" }
+      { allow: private, ownerField: "createdBy" }
       { allow: public, operations: [read] }
     ]
   ) {

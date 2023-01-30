@@ -19,7 +19,6 @@ export const createPost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -46,7 +45,6 @@ export const updatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -73,7 +71,6 @@ export const deletePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
-          createdBy
         }
         nextToken
       }
@@ -105,7 +102,6 @@ export const createComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;
@@ -132,7 +128,6 @@ export const updateComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;
@@ -159,7 +154,6 @@ export const deleteComment = /* GraphQL */ `
       postId
       createdAt
       updatedAt
-      createdBy
     }
   }
 `;
