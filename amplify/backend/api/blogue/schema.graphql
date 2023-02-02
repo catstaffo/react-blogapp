@@ -1,37 +1,26 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-type Post
-  @model
-  @auth(
-    rules: [
-      # allow all authenticated users ability to create posts
-      # allow owners ability to update and delete their posts
-      { allow: owner, ownerField: "username" }
-      # allow all authenticated users to read posts
-      { allow: private, operations: [read] }
-      # allow all guest users (not authenticated) to read posts
-      { allow: public, operations: [read] }
-    ]
-  ) {
+type Post @model @auth(rules: [{allow: owner, ownerField: "username"}, {allow: private, operations: [read]}, {allow: public, operations: [read]}]) {
   id: ID!
   title: String!
   content: String!
   postImage: String
   username: String
   comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
+  wildlife: [Wildlife] @manyToMany(relationName: "Sightings")
 }
 
-type Comment
-  @model
-  @auth(
-    rules: [
-      { allow: private, ownerField: "username" }
-      { allow: public, operations: [read] }
-    ]
-  ) {
+type Wildlife @model @auth(rules: [{allow: private, operations:[create, read, update, delete] }, {allow: public, operations: [read]}]) {
+  id: ID!
+  category: String!
+  bio: String
+  family: String
+  species: String
+  posts: [Post] @manyToMany(relationName: "Sightings")
+}
+
+type Comment @model @auth(rules: [{allow: private, ownerField: "username"}, {allow: public, operations: [read]}]) {
   id: ID!
   message: String!
   username: String
   post: Post @belongsTo(fields: ["postId"])
   postId: ID @index(name: "byPost")
-}
+} 

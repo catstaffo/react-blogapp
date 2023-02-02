@@ -1,6 +1,4 @@
 
-2. upload images to posts
-3. begin wildlife database
 4. pages for wildlife in database
 5. tag posts with wildlife
 6. search posts

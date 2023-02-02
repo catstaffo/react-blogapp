@@ -20,6 +20,17 @@ export const getPost = /* GraphQL */ `
         }
         nextToken
       }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -39,6 +50,56 @@ export const listPosts = /* GraphQL */ `
         postImage
         username
         comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getWildlife = /* GraphQL */ `
+  query GetWildlife($id: ID!) {
+    getWildlife(id: $id) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listWildlife = /* GraphQL */ `
+  query ListWildlife(
+    $filter: ModelWildlifeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listWildlife(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        category
+        bio
+        family
+        species
+        posts {
           nextToken
         }
         createdAt
@@ -61,6 +122,9 @@ export const getComment = /* GraphQL */ `
         postImage
         username
         comments {
+          nextToken
+        }
+        wildlife {
           nextToken
         }
         createdAt
@@ -131,6 +195,172 @@ export const commentsByPostId = /* GraphQL */ `
         postId
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getSightings = /* GraphQL */ `
+  query GetSightings($id: ID!) {
+    getSightings(id: $id) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
+    }
+  }
+`;
+export const listSightings = /* GraphQL */ `
+  query ListSightings(
+    $filter: ModelSightingsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSightings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        postId
+        wildlifeId
+        post {
+          id
+          title
+          content
+          postImage
+          username
+          createdAt
+          updatedAt
+        }
+        wildlife {
+          id
+          category
+          bio
+          family
+          species
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        username
+      }
+      nextToken
+    }
+  }
+`;
+export const sightingsByPostId = /* GraphQL */ `
+  query SightingsByPostId(
+    $postId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelSightingsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    sightingsByPostId(
+      postId: $postId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        postId
+        wildlifeId
+        post {
+          id
+          title
+          content
+          postImage
+          username
+          createdAt
+          updatedAt
+        }
+        wildlife {
+          id
+          category
+          bio
+          family
+          species
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        username
+      }
+      nextToken
+    }
+  }
+`;
+export const sightingsByWildlifeId = /* GraphQL */ `
+  query SightingsByWildlifeId(
+    $wildlifeId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelSightingsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    sightingsByWildlifeId(
+      wildlifeId: $wildlifeId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        postId
+        wildlifeId
+        post {
+          id
+          title
+          content
+          postImage
+          username
+          createdAt
+          updatedAt
+        }
+        wildlife {
+          id
+          category
+          bio
+          family
+          species
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        username
       }
       nextToken
     }

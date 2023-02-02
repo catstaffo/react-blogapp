@@ -16,6 +16,8 @@ import Blog from "./pages/blog";
 import MyPosts from "./pages/my-posts";
 import Login from "./pages/login";
 import EditPost from "./pages/postedit";
+import WildlifeHome from "./pages/wildlife"
+//import WildlifeListing from "./components/wildlifelist"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthContext from "./context";
 
@@ -64,6 +66,19 @@ const router = createBrowserRouter([
       {
         path: "/my-posts/edit/:postid",
         element: <EditPost />,
+      },
+      { // plant vs animal homepage
+        path: "/wildlife",
+        element: <WildlifeHome />,
+        /*children: [
+          { // family grid listing of cards
+        path: "/wildlife/:family",
+        element: <WildlifeListing />,
+          },
+          { // species single card
+          path: "/wildlife/:family/:species",
+          element: <WildlifeCard />,
+      },]*/
       },
     ],
   },

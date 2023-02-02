@@ -23,6 +23,17 @@ export const onCreatePost = /* GraphQL */ `
         }
         nextToken
       }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -47,6 +58,17 @@ export const onUpdatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+        }
+        nextToken
+      }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
         }
         nextToken
       }
@@ -77,6 +99,89 @@ export const onDeletePost = /* GraphQL */ `
         }
         nextToken
       }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateWildlife = /* GraphQL */ `
+  subscription OnCreateWildlife($filter: ModelSubscriptionWildlifeFilterInput) {
+    onCreateWildlife(filter: $filter) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateWildlife = /* GraphQL */ `
+  subscription OnUpdateWildlife($filter: ModelSubscriptionWildlifeFilterInput) {
+    onUpdateWildlife(filter: $filter) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteWildlife = /* GraphQL */ `
+  subscription OnDeleteWildlife($filter: ModelSubscriptionWildlifeFilterInput) {
+    onDeleteWildlife(filter: $filter) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -95,6 +200,9 @@ export const onCreateComment = /* GraphQL */ `
         postImage
         username
         comments {
+          nextToken
+        }
+        wildlife {
           nextToken
         }
         createdAt
@@ -121,6 +229,9 @@ export const onUpdateComment = /* GraphQL */ `
         comments {
           nextToken
         }
+        wildlife {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -145,12 +256,141 @@ export const onDeleteComment = /* GraphQL */ `
         comments {
           nextToken
         }
+        wildlife {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       postId
       createdAt
       updatedAt
+    }
+  }
+`;
+export const onCreateSightings = /* GraphQL */ `
+  subscription OnCreateSightings(
+    $filter: ModelSubscriptionSightingsFilterInput
+    $username: String
+  ) {
+    onCreateSightings(filter: $filter, username: $username) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
+    }
+  }
+`;
+export const onUpdateSightings = /* GraphQL */ `
+  subscription OnUpdateSightings(
+    $filter: ModelSubscriptionSightingsFilterInput
+    $username: String
+  ) {
+    onUpdateSightings(filter: $filter, username: $username) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
+    }
+  }
+`;
+export const onDeleteSightings = /* GraphQL */ `
+  subscription OnDeleteSightings(
+    $filter: ModelSubscriptionSightingsFilterInput
+    $username: String
+  ) {
+    onDeleteSightings(filter: $filter, username: $username) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
     }
   }
 `;

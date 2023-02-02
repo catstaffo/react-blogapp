@@ -23,6 +23,17 @@ export const createPost = /* GraphQL */ `
         }
         nextToken
       }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -47,6 +58,17 @@ export const updatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+        }
+        nextToken
+      }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
         }
         nextToken
       }
@@ -77,6 +99,98 @@ export const deletePost = /* GraphQL */ `
         }
         nextToken
       }
+      wildlife {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createWildlife = /* GraphQL */ `
+  mutation CreateWildlife(
+    $input: CreateWildlifeInput!
+    $condition: ModelWildlifeConditionInput
+  ) {
+    createWildlife(input: $input, condition: $condition) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateWildlife = /* GraphQL */ `
+  mutation UpdateWildlife(
+    $input: UpdateWildlifeInput!
+    $condition: ModelWildlifeConditionInput
+  ) {
+    updateWildlife(input: $input, condition: $condition) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteWildlife = /* GraphQL */ `
+  mutation DeleteWildlife(
+    $input: DeleteWildlifeInput!
+    $condition: ModelWildlifeConditionInput
+  ) {
+    deleteWildlife(input: $input, condition: $condition) {
+      id
+      category
+      bio
+      family
+      species
+      posts {
+        items {
+          id
+          postId
+          wildlifeId
+          createdAt
+          updatedAt
+          username
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -98,6 +212,9 @@ export const createComment = /* GraphQL */ `
         postImage
         username
         comments {
+          nextToken
+        }
+        wildlife {
           nextToken
         }
         createdAt
@@ -127,6 +244,9 @@ export const updateComment = /* GraphQL */ `
         comments {
           nextToken
         }
+        wildlife {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -154,12 +274,141 @@ export const deleteComment = /* GraphQL */ `
         comments {
           nextToken
         }
+        wildlife {
+          nextToken
+        }
         createdAt
         updatedAt
       }
       postId
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createSightings = /* GraphQL */ `
+  mutation CreateSightings(
+    $input: CreateSightingsInput!
+    $condition: ModelSightingsConditionInput
+  ) {
+    createSightings(input: $input, condition: $condition) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
+    }
+  }
+`;
+export const updateSightings = /* GraphQL */ `
+  mutation UpdateSightings(
+    $input: UpdateSightingsInput!
+    $condition: ModelSightingsConditionInput
+  ) {
+    updateSightings(input: $input, condition: $condition) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
+    }
+  }
+`;
+export const deleteSightings = /* GraphQL */ `
+  mutation DeleteSightings(
+    $input: DeleteSightingsInput!
+    $condition: ModelSightingsConditionInput
+  ) {
+    deleteSightings(input: $input, condition: $condition) {
+      id
+      postId
+      wildlifeId
+      post {
+        id
+        title
+        content
+        postImage
+        username
+        comments {
+          nextToken
+        }
+        wildlife {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      wildlife {
+        id
+        category
+        bio
+        family
+        species
+        posts {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      username
     }
   }
 `;
