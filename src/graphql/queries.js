@@ -7,6 +7,7 @@ export const getPost = /* GraphQL */ `
       id
       title
       content
+      postImage
       username
       comments {
         items {
@@ -35,6 +36,7 @@ export const listPosts = /* GraphQL */ `
         id
         title
         content
+        postImage
         username
         comments {
           nextToken
@@ -56,6 +58,7 @@ export const getComment = /* GraphQL */ `
         id
         title
         content
+        postImage
         username
         comments {
           nextToken
@@ -84,6 +87,7 @@ export const listComments = /* GraphQL */ `
           id
           title
           content
+          postImage
           username
           createdAt
           updatedAt
@@ -119,6 +123,7 @@ export const commentsByPostId = /* GraphQL */ `
           id
           title
           content
+          postImage
           username
           createdAt
           updatedAt

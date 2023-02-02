@@ -41,9 +41,7 @@ export default function Post() {
       );
       const myPost = myPostData.data.getPost;
       setMyPost(myPost);
-      Storage.list('photos/') // for listing ALL files without prefix, pass '' instead
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
+      console.log(myPost.postImage)
     } catch (err) {
       console.log(err);
     }
@@ -68,6 +66,7 @@ export default function Post() {
   function toggle() {
     setShowCommentCreate(!showCommentCreate);
   }
+
 
   return (
     <View>

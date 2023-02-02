@@ -15,6 +15,9 @@ const initialState = { title: "", content: "" };
 
 export function CreatePost() {
   const [post, setPost] = useState(initialState);
+  const [imageData, setImageData] = useState(null);
+  const [image, setImage] = useState()
+  const [fileStatus, setFileStatus] = useState(false)
   const { title, content } = post;
   const navigate = useNavigate();
 
@@ -26,22 +29,22 @@ export function CreatePost() {
     }));
   }
 
-  async function storagePush(e) {
-    try {
-      const file = e.target.files[0];
-      await Storage.put(file.name, file, {
-        contentType: "image/png", // contentType is optional
-      });
-    } catch (error) {
-      console.log("Error uploading file: ", error);
-    }
+  const uploadImage = async () => {
+    const image = await Storage.put(imageData.name, imageData, {
+      contentType: imageData.type
+    });
+    setImage(image);
+    setFileStatus(true)
   }
-
 
   async function createNewPost() {{
     if (!title || !content) return;
     const postid = uuid();
     post.id = postid;
+
+    if (image) {
+      post.postImage = image.filename;
+    }
 
     await API.graphql({
       query: createPost,
@@ -66,7 +69,10 @@ export function CreatePost() {
         onChange={(value) => setPost({ ...post, content: value })}
         className="max-w-[70vw] max-h-[60vh] mb-3"
       />
-      <input type="file" onChange={onChange} />;
+
+      <input type="file" onChange={(e) => setImageData(e.target.files[0])} />;
+      <button type="button" className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900" onClick={uploadImage}>Upload image</button>
+      {fileStatus ? "file uploaded successfully" : ""}
       <button
         type="button"
         onClick={createNewPost}

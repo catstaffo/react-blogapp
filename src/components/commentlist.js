@@ -35,7 +35,7 @@ export default function Comments() {
 
   return (
     <div>
-      <h2 className="font-medium">Comments</h2>
+      {comments[0] ? <h2 className="font-medium">Comments</h2> : ""}
       {comments.map((comment) => (
         <div
           key={comment.id}
