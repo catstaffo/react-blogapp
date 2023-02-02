@@ -22,6 +22,7 @@ export default function Post() {
     url, which has the id encoded in it
   */
   let { postid } = useParams();
+  const [postImage, setPostImage] = useState(null);
   const [myPost, setMyPost] = useState([]);
   const [postComment, setPostComment] = useState(initialState);
   const [showCommentCreate, setShowCommentCreate] = useState(false);
@@ -34,6 +35,7 @@ export default function Post() {
     // eslint-disable-next-line
   }, []);
 
+
   async function fetchPost() {
     try {
       const myPostData = await API.graphql(
@@ -41,6 +43,10 @@ export default function Post() {
       );
       const myPost = myPostData.data.getPost;
       setMyPost(myPost);
+      if (myPost.postImage) {
+      const postImage = await Storage.get(myPost.postImage);
+      setPostImage(postImage);
+    }
       console.log(myPost.postImage)
     } catch (err) {
       console.log(err);
@@ -74,6 +80,7 @@ export default function Post() {
         <Card variation="elevated">
           <Flex direction="row" justifyContent="space-between">
             <Flex direction="column">
+                 <img src={postImage} className='mt4' />
               <Heading isTruncated={true} level={4}>
                 Title: {myPost.title}
               </Heading>

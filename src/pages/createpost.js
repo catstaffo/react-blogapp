@@ -3,7 +3,7 @@
   they are going to create a post
 */
 import { withAuthenticator } from "@aws-amplify/ui-react";
-import { useState, React } from "react";
+import { useState, React, useRef } from "react";
 import { API, Storage } from "aws-amplify";
 import { v4 as uuid } from "uuid";
 import { createPost } from "../graphql/mutations";
@@ -15,11 +15,11 @@ const initialState = { title: "", content: "" };
 
 export function CreatePost() {
   const [post, setPost] = useState(initialState);
-  const [imageData, setImageData] = useState(null);
   const [image, setImage] = useState()
-  const [fileStatus, setFileStatus] = useState(false)
   const { title, content } = post;
   const navigate = useNavigate();
+  const imageFileInput = useRef(null);
+
 
   function onChange(e) {
     setPost(() => ({
@@ -29,12 +29,14 @@ export function CreatePost() {
     }));
   }
 
-  const uploadImage = async () => {
-    const image = await Storage.put(imageData.name, imageData, {
-      contentType: imageData.type
-    });
-    setImage(image);
-    setFileStatus(true)
+  async function uploadImage() {
+    imageFileInput.current.click();
+  }
+
+  function handleChange(e) {
+    const fileUploaded = e.target.files[0];
+    if (!fileUploaded) return;
+    setImage(fileUploaded);
   }
 
   async function createNewPost() {{
@@ -43,7 +45,9 @@ export function CreatePost() {
     post.id = postid;
 
     if (image) {
-      post.postImage = image.filename;
+      const filename = `${image.name}_${uuid()}`;
+      post.postImage = filename;
+      await Storage.put(filename, image);
     }
 
     await API.graphql({
@@ -70,9 +74,19 @@ export function CreatePost() {
         className="max-w-[70vw] max-h-[60vh] mb-3"
       />
 
-      <input type="file" onChange={(e) => setImageData(e.target.files[0])} />;
-      <button type="button" className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900" onClick={uploadImage}>Upload image</button>
-      {fileStatus ? "file uploaded successfully" : ""}
+      <input
+        type='file'
+        ref={imageFileInput}
+        className='absolute w-0 h-0'
+        onChange={handleChange}
+      />
+      <button
+        type="button"
+        className="shadow border mb-4 font-semibold px-8 py-2 rounded-lg text-blue-900"
+        onClick={uploadImage}
+      >
+        Upload Image
+      </button>
       <button
         type="button"
         onClick={createNewPost}
