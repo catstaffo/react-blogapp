@@ -20,6 +20,12 @@
       },
       "storage": {
         "postimage": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3qi7hljyctt1g",
+          "type": "manual"
+        }
       }
     }
   }
