@@ -8,7 +8,7 @@ type Post @model @auth(rules: [{allow: owner, ownerField: "username"}, {allow: p
   wildlife: [Wildlife] @manyToMany(relationName: "Sightings")
 }
 
-type Wildlife @model @auth(rules: [{allow: private, operations:[create, read, update, delete] }, {allow: public, operations: [read]}]) {
+type Wildlife @model @auth(rules: [{allow: private, operations:[read] }, {allow: public, operations: [read]}]) {
   id: ID!
   category: String!
   bio: String
