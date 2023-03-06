@@ -4,6 +4,9 @@ type Post @model @auth(rules: [{allow: owner, ownerField: "username"}, {allow: p
   content: String!
   postImage: String
   username: String
+  date: AWSDate
+  time: AWSTime
+  datetime: AWSDateTime
   comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
   wildlife: [Wildlife] @manyToMany(relationName: "Sightings")
 }
@@ -21,6 +24,9 @@ type Comment @model @auth(rules: [{allow: private, ownerField: "username"}, {all
   id: ID!
   message: String!
   username: String
+  date: AWSDate
+  time: AWSTime
+  datetime: AWSDateTime
   post: Post @belongsTo(fields: ["postId"])
   postId: ID @index(name: "byPost")
-} 
+}

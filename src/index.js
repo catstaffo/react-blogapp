@@ -20,6 +20,7 @@ import WildlifeHome from "./pages/wildlife"
 //import WildlifeListing from "./components/wildlifelist"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthContext from "./context";
+import EditProfile from "./pages/profileedit";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/profile/edit/:profileid",
+        element: <EditProfile />,
       },
       {
         path: "/my-posts",

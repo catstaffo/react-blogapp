@@ -12,11 +12,17 @@ export const createPost = /* GraphQL */ `
       content
       postImage
       username
+      date
+      time
+      datetime
       comments {
         items {
           id
           message
           username
+          date
+          time
+          datetime
           postId
           createdAt
           updatedAt
@@ -50,11 +56,17 @@ export const updatePost = /* GraphQL */ `
       content
       postImage
       username
+      date
+      time
+      datetime
       comments {
         items {
           id
           message
           username
+          date
+          time
+          datetime
           postId
           createdAt
           updatedAt
@@ -88,11 +100,17 @@ export const deletePost = /* GraphQL */ `
       content
       postImage
       username
+      date
+      time
+      datetime
       comments {
         items {
           id
           message
           username
+          date
+          time
+          datetime
           postId
           createdAt
           updatedAt
@@ -205,12 +223,18 @@ export const createComment = /* GraphQL */ `
       id
       message
       username
+      date
+      time
+      datetime
       post {
         id
         title
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -235,12 +259,18 @@ export const updateComment = /* GraphQL */ `
       id
       message
       username
+      date
+      time
+      datetime
       post {
         id
         title
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -265,12 +295,18 @@ export const deleteComment = /* GraphQL */ `
       id
       message
       username
+      date
+      time
+      datetime
       post {
         id
         title
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -301,6 +337,9 @@ export const createSightings = /* GraphQL */ `
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -343,6 +382,9 @@ export const updateSightings = /* GraphQL */ `
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -385,6 +427,9 @@ export const deleteSightings = /* GraphQL */ `
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }

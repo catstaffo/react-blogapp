@@ -3,6 +3,8 @@ courtesy of https://blog.jarrodwatts.com/why-you-should-be-using-react-context *
 
 import { useState, useEffect, createContext, useContext } from 'react'
 import { Auth, Hub } from 'aws-amplify'
+import { API } from "aws-amplify";
+import { createProfile } from "./graphql/mutations";
 
 // initialize the context with an empty object
 const UserContext = createContext({});

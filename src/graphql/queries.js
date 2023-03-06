@@ -9,11 +9,17 @@ export const getPost = /* GraphQL */ `
       content
       postImage
       username
+      date
+      time
+      datetime
       comments {
         items {
           id
           message
           username
+          date
+          time
+          datetime
           postId
           createdAt
           updatedAt
@@ -49,6 +55,9 @@ export const listPosts = /* GraphQL */ `
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -115,12 +124,18 @@ export const getComment = /* GraphQL */ `
       id
       message
       username
+      date
+      time
+      datetime
       post {
         id
         title
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -147,12 +162,18 @@ export const listComments = /* GraphQL */ `
         id
         message
         username
+        date
+        time
+        datetime
         post {
           id
           title
           content
           postImage
           username
+          date
+          time
+          datetime
           createdAt
           updatedAt
         }
@@ -183,12 +204,18 @@ export const commentsByPostId = /* GraphQL */ `
         id
         message
         username
+        date
+        time
+        datetime
         post {
           id
           title
           content
           postImage
           username
+          date
+          time
+          datetime
           createdAt
           updatedAt
         }
@@ -212,6 +239,9 @@ export const getSightings = /* GraphQL */ `
         content
         postImage
         username
+        date
+        time
+        datetime
         comments {
           nextToken
         }
@@ -256,6 +286,9 @@ export const listSightings = /* GraphQL */ `
           content
           postImage
           username
+          date
+          time
+          datetime
           createdAt
           updatedAt
         }
@@ -301,6 +334,9 @@ export const sightingsByPostId = /* GraphQL */ `
           content
           postImage
           username
+          date
+          time
+          datetime
           createdAt
           updatedAt
         }
@@ -346,6 +382,9 @@ export const sightingsByWildlifeId = /* GraphQL */ `
           content
           postImage
           username
+          date
+          time
+          datetime
           createdAt
           updatedAt
         }
